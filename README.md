@@ -18,7 +18,7 @@ npm install -g @anthropic-ai/claude-code
 
 ### 2. Claude in Chrome extension
 
-The [Claude in Chrome](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) extension lets Claude drive your actual browser — the same one where you're already logged in. This matters because many sites you'd want to research are behind authentication (course platforms, SaaS dashboards, gated content). Rather than dealing with API tokens or headless browser auth flows, Claude just opens a new tab in your Chrome session and inherits all your cookies and login state. Each research agent navigates, screenshots, reads the DOM, extracts computed styles, and interacts with the page as if you were doing it yourself.
+The [Claude in Chrome](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) extension lets Claude drive your actual browser — the same one where you're already logged in. This matters because many sites you'd want to research are behind authentication (course platforms, SaaS dashboards, gated content). Rather than dealing with API tokens or headless browser auth flows, Claude just opens a new tab in your Chrome session and inherits all your cookies and login state. Each research agent navigates, screenshots, reads the DOM, extracts computed styles, and interacts with the page as if you were doing it yourself. See the [setup guide](https://code.claude.com/docs/en/chrome) for installation and troubleshooting.
 
 ### 3. tmux
 
