@@ -20,15 +20,6 @@ npm install -g @anthropic-ai/claude-code
 
 The [Claude in Chrome](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) extension lets Claude drive your actual browser — the same one where you're already logged in. This matters because many sites you'd want to research are behind authentication (course platforms, SaaS dashboards, gated content). Rather than dealing with API tokens or headless browser auth flows, Claude just opens a new tab in your Chrome session and inherits all your cookies and login state. Each research agent navigates, screenshots, reads the DOM, extracts computed styles, and interacts with the page as if you were doing it yourself.
 
-**Install it from the Chrome Web Store:**
-
-[Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn)
-
-Requirements:
-- Google Chrome or Microsoft Edge
-- Extension version 1.0.36 or higher
-- A direct Anthropic plan (Pro, Max, Teams, or Enterprise) — third-party providers (Bedrock, Vertex) are not supported for Chrome integration
-
 ### 3. tmux
 
 You need tmux for [agent teams](https://code.claude.com/docs/en/agent-teams) to work properly. Without it, all agents run in-process in a single terminal and you can't see what they're doing. With tmux, each agent gets its own split pane so you can watch them work in parallel.
@@ -130,15 +121,6 @@ The output is a comprehensive markdown document covering all 10 research areas w
 - Technical architecture summary
 - Accessibility grade and recommendations
 
-## Customization
-
-Fork the repo and edit `skills/design-research/SKILL.md` to:
-- Add or remove research areas
-- Change the output format
-- Adjust the number of parallel agents
-- Modify the dependency chain between tasks
-- Add domain-specific analysis (e.g., e-commerce checkout flow, SaaS onboarding)
-
 ## Tips
 
 - **Chrome must be open** with the extension active before starting Claude
@@ -150,15 +132,7 @@ Fork the repo and edit `skills/design-research/SKILL.md` to:
 
 ## How it works
 
-This prompt uses Claude Code's [agent teams](https://code.claude.com/docs/en/agent-teams) feature to coordinate multiple Claude instances. Each agent:
-
-1. Opens a new Chrome tab via the Claude in Chrome extension
-2. Navigates to the target URL
-3. Uses browser automation tools (screenshots, DOM inspection, JavaScript execution, accessibility tree reading) to analyze specific aspects of the design
-4. Reports findings back to the team lead
-5. The lead synthesizes everything into the final report
-
-The three-pass execution strategy ensures agents that need site-wide context (like the component inventory) wait for the site structure agent to finish first, while independent analyses (like color extraction and accessibility) run immediately.
+Uses Claude Code [agent teams](https://code.claude.com/docs/en/agent-teams) to spawn 10 browser-automation agents across three passes. Independent tasks (colors, accessibility, tech stack) run immediately; dependent tasks (page layouts, components) wait for the site structure agent to finish first. Each agent opens its own Chrome tab, does its analysis, and reports back. The lead synthesizes everything into one document.
 
 ## License
 
