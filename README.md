@@ -82,15 +82,6 @@ Or if you've cloned the repo locally:
 Read /path/to/design-research/skills/design-research/SKILL.md and follow those instructions for https://example.com. Write findings to notes/example-research.md
 ```
 
-### Alternative: install as a skill
-
-If you use this frequently, you can install it as a [Claude Code skill](https://code.claude.com/docs/en/skills) for `/design-research URL` shorthand:
-
-```bash
-mkdir -p ~/.claude/skills
-cp -r skills/design-research ~/.claude/skills/
-```
-
 ### What happens
 
 1. Claude creates an agent team
@@ -133,6 +124,15 @@ The output is a comprehensive markdown document covering all 10 research areas w
 ## How it works
 
 Uses Claude Code [agent teams](https://code.claude.com/docs/en/agent-teams) to spawn 10 browser-automation agents across three passes. Independent tasks (colors, accessibility, tech stack) run immediately; dependent tasks (page layouts, components) wait for the site structure agent to finish first. Each agent opens its own Chrome tab, does its analysis, and reports back. The lead synthesizes everything into one document.
+
+## Installing as a skill
+
+If you use this frequently, you can install it as a [Claude Code skill](https://code.claude.com/docs/en/skills) for `/design-research URL` shorthand:
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r skills/design-research ~/.claude/skills/
+```
 
 ## License
 
