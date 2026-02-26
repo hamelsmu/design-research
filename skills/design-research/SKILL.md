@@ -17,7 +17,7 @@ If no URL was provided, ask the user for the target URL before proceeding.
 
 1. **You MUST use agent teams** (TeamCreate, TaskCreate, TaskUpdate, SendMessage, etc.) — NOT loose subagents via the Task tool
 2. **Every teammate MUST use `mcp__claude-in-chrome__*` browser automation tools** — never WebFetch, curl, or any other method
-3. **Write all findings to a single output file** specified by the user (or default to `notes/design-research.md`)
+3. **You (the lead) MUST synthesize all findings** into a single output file when all agents are done. The user specifies the output path; if they don't, default to `notes/design-research.md`. Do NOT just concatenate raw agent reports — read through all findings, resolve duplicates, ensure consistent formatting, fill in cross-references between sections, and produce a cohesive, well-structured document.
 
 ## Browser Tool Startup Sequence (for every teammate)
 
@@ -175,7 +175,7 @@ Follow these steps exactly:
    - Approve shutdown responses
 6. **When Task 1 completes**: spawn second-pass agents (Tasks 2, 4, 5, 6), passing the site map from Task 1's findings
 7. **When Task 2 completes**: spawn third-pass agent (Task 8), passing the layout findings
-8. **After all agents complete**: compile all findings into the output file
+8. **After all agents complete — SYNTHESIZE**: This is your most important job as lead. Read through ALL agent reports and synthesize them into a single cohesive markdown document at the output path the user specified (default: `notes/design-research.md`). Do not just paste reports together — resolve duplicates, ensure consistent formatting, add cross-references between sections (e.g., link color findings to accessibility contrast issues), and produce a polished, well-organized reference document.
 9. **Clean up**: `TeamDelete` to remove team resources
 
 ## Output Format

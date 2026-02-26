@@ -2,7 +2,9 @@
 
 A [Claude Code skill](https://code.claude.com/docs/en/skills) that runs a comprehensive design research audit on any website using a coordinated team of browser-automation agents.
 
-Give it a URL and it dispatches 10 specialized agents across three parallel passes to document every aspect of the site's design: structure, layout, colors, typography, components, content templates, UX patterns, visual personality, responsive behavior, technical stack, and accessibility. Results are compiled into a single structured markdown report.
+Give it a URL and it dispatches 10 specialized agents across three parallel passes to document every aspect of the site's design: structure, layout, colors, typography, components, content templates, UX patterns, visual personality, responsive behavior, technical stack, and accessibility. The lead agent synthesizes all findings into a single structured markdown report.
+
+![Agent team running a design research audit in split-pane mode](agent-team-screenshot.jpg)
 
 ## Prerequisites
 
