@@ -1,6 +1,6 @@
 # design-research
 
-A [Claude Code skill](https://code.claude.com/docs/en/skills) that runs a comprehensive design research audit on any website using a coordinated team of browser-automation agents.
+A prompt for [Claude Code](https://code.claude.com) that runs a comprehensive design research audit on any website using a coordinated team of browser-automation agents.
 
 Give it a URL and it dispatches 10 specialized agents across three parallel passes to document every aspect of the site's design: structure, layout, colors, typography, components, content templates, UX patterns, visual personality, responsive behavior, technical stack, and accessibility. The lead agent synthesizes all findings into a single structured markdown report.
 
@@ -18,7 +18,7 @@ npm install -g @anthropic-ai/claude-code
 
 ### 2. Claude in Chrome extension
 
-This skill requires the **Claude in Chrome** browser extension for browser automation. Every research agent uses Chrome to navigate, screenshot, inspect DOM, extract styles, and interact with the target site.
+This prompt requires the **Claude in Chrome** browser extension for browser automation. Every research agent uses Chrome to navigate, screenshot, inspect DOM, extract styles, and interact with the target site.
 
 **Install it from the Chrome Web Store:**
 
@@ -72,22 +72,6 @@ Or set the environment variable directly:
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
 
-## Installation
-
-Clone this repo and copy the skill into your Claude Code skills directory:
-
-```bash
-# For all projects (personal skills)
-mkdir -p ~/.claude/skills
-cp -r skills/design-research ~/.claude/skills/
-
-# Or for a specific project only
-mkdir -p /path/to/your/project/.claude/skills
-cp -r skills/design-research /path/to/your/project/.claude/skills/
-```
-
-Verify it's installed by running `claude` and typing `/design-research` — you should see it in the skill list.
-
 ## Usage
 
 ### Starting Claude Code
@@ -108,19 +92,37 @@ tmux -CC
 claude --chrome --dangerously-skip-permissions
 ```
 
-### Running the skill
+### Running the audit
 
-Invoke the skill with the target URL:
-
-```
-/design-research https://example.com
-```
-
-Or describe what you want:
+Just point Claude at the prompt file in this repo and tell it what site to research:
 
 ```
-Run a design research audit on https://example.com and write findings to notes/example-research.md
+Read https://raw.githubusercontent.com/hamelsmu/design-research/main/skills/design-research/SKILL.md and follow those instructions for https://example.com. Write findings to notes/example-research.md
 ```
+
+Or if you've cloned the repo locally:
+
+```
+Read /path/to/design-research/skills/design-research/SKILL.md and follow those instructions for https://example.com. Write findings to notes/example-research.md
+```
+
+This approach avoids "skills rot" — the prompt is only loaded when you need it, rather than sitting in your context window on every session.
+
+### Optional: install as a skill
+
+If you use this frequently enough that the convenience of `/design-research URL` outweighs the context overhead, you can install it as a Claude Code skill:
+
+```bash
+# For all projects (personal skills)
+mkdir -p ~/.claude/skills
+cp -r skills/design-research ~/.claude/skills/
+
+# Or for a specific project only
+mkdir -p /path/to/your/project/.claude/skills
+cp -r skills/design-research /path/to/your/project/.claude/skills/
+```
+
+Be aware that installed skills have their descriptions loaded into context (~2% of context window) on every session, even when you're not using them.
 
 ### What happens
 
@@ -138,7 +140,7 @@ Run a design research audit on https://example.com and write findings to notes/e
    - UX Patterns & Micro-interactions
 4. **Third pass** — 1 agent (after page layouts are documented):
    - Mobile & Responsive Behavior
-5. All findings are compiled into a single structured markdown report
+5. The lead synthesizes all findings into a single structured markdown report
 
 ### Output
 
@@ -154,7 +156,7 @@ The output is a comprehensive markdown document covering all 10 research areas w
 
 ## Customization
 
-Edit `skills/design-research/SKILL.md` to:
+Fork the repo and edit `skills/design-research/SKILL.md` to:
 - Add or remove research areas
 - Change the output format
 - Adjust the number of parallel agents
@@ -168,17 +170,17 @@ Edit `skills/design-research/SKILL.md` to:
 - **Expect ~10-15 minutes** for a full audit depending on site complexity
 - **Token usage is significant** — each agent has its own context window. A full 10-agent audit uses roughly 10x the tokens of a single session
 - If a connection drops, run `/chrome` inside Claude to reconnect
-- The skill works best on sites with multiple distinct page types
+- The prompt works best on sites with multiple distinct page types
 
 ## How it works
 
-This skill uses Claude Code's [agent teams](https://code.claude.com/docs/en/agent-teams) feature to coordinate multiple Claude instances. Each agent:
+This prompt uses Claude Code's [agent teams](https://code.claude.com/docs/en/agent-teams) feature to coordinate multiple Claude instances. Each agent:
 
 1. Opens a new Chrome tab via the Claude in Chrome extension
 2. Navigates to the target URL
 3. Uses browser automation tools (screenshots, DOM inspection, JavaScript execution, accessibility tree reading) to analyze specific aspects of the design
 4. Reports findings back to the team lead
-5. The lead compiles everything into the final report
+5. The lead synthesizes everything into the final report
 
 The three-pass execution strategy ensures agents that need site-wide context (like the component inventory) wait for the site structure agent to finish first, while independent analyses (like color extraction and accessibility) run immediately.
 
