@@ -18,7 +18,7 @@ npm install -g @anthropic-ai/claude-code
 
 ### 2. Claude in Chrome extension
 
-This prompt requires the **Claude in Chrome** browser extension for browser automation. Every research agent uses Chrome to navigate, screenshot, inspect DOM, extract styles, and interact with the target site.
+The [Claude in Chrome](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) extension lets Claude drive your actual browser — the same one where you're already logged in. This matters because many sites you'd want to research are behind authentication (course platforms, SaaS dashboards, gated content). Rather than dealing with API tokens or headless browser auth flows, Claude just opens a new tab in your Chrome session and inherits all your cookies and login state. Each research agent navigates, screenshots, reads the DOM, extracts computed styles, and interacts with the page as if you were doing it yourself.
 
 **Install it from the Chrome Web Store:**
 
