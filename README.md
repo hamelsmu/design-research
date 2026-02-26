@@ -29,11 +29,9 @@ Requirements:
 - Extension version 1.0.36 or higher
 - A direct Anthropic plan (Pro, Max, Teams, or Enterprise) — third-party providers (Bedrock, Vertex) are not supported for Chrome integration
 
-### 3. tmux (recommended for agent teams)
+### 3. tmux
 
-Agent teams work best in **split-pane mode** where each agent gets its own terminal pane. This requires tmux.
-
-**Install tmux:**
+You need tmux for [agent teams](https://code.claude.com/docs/en/agent-teams) to work properly. Without it, all agents run in-process in a single terminal and you can't see what they're doing. With tmux, each agent gets its own split pane so you can watch them work in parallel.
 
 ```bash
 # macOS
@@ -41,18 +39,9 @@ brew install tmux
 
 # Ubuntu/Debian
 sudo apt install tmux
-
-# Arch
-sudo pacman -S tmux
 ```
 
-**If you use iTerm2 on macOS** (recommended): start tmux in iTerm2 integration mode for the best experience:
-
-```bash
-tmux -CC
-```
-
-This gives you native iTerm2 tabs/splits instead of tmux's built-in UI. See the [agent teams docs](https://code.claude.com/docs/en/agent-teams) for more on display modes.
+On macOS with iTerm2, use `tmux -CC` for native iTerm2 tab/split integration instead of tmux's built-in UI.
 
 ### 4. Enable agent teams
 
@@ -76,21 +65,17 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
 ### Starting Claude Code
 
-Start Claude Code with the `--chrome` flag and `--dangerously-skip-permissions` (required so agents can use browser tools without per-action approval prompts):
+Start a tmux session, then launch Claude with Chrome and permissions flags:
 
 ```bash
-claude --chrome --dangerously-skip-permissions
-```
-
-If you're using tmux for split-pane agent display (recommended):
-
-```bash
-# Start a tmux session first (use -CC for iTerm2 integration)
+# iTerm2 on macOS (recommended)
 tmux -CC
 
 # Then inside tmux:
 claude --chrome --dangerously-skip-permissions
 ```
+
+`--chrome` connects to the Chrome extension. `--dangerously-skip-permissions` is needed so the 10 browser agents don't each prompt you for approval on every action. See the [agent teams docs](https://code.claude.com/docs/en/agent-teams) for more on how this works.
 
 ### Running the audit
 
