@@ -106,23 +106,14 @@ Or if you've cloned the repo locally:
 Read /path/to/design-research/skills/design-research/SKILL.md and follow those instructions for https://example.com. Write findings to notes/example-research.md
 ```
 
-This approach avoids "skills rot" — the prompt is only loaded when you need it, rather than sitting in your context window on every session.
+### Alternative: install as a skill
 
-### Optional: install as a skill
-
-If you use this frequently enough that the convenience of `/design-research URL` outweighs the context overhead, you can install it as a Claude Code skill:
+If you use this frequently, you can install it as a [Claude Code skill](https://code.claude.com/docs/en/skills) for `/design-research URL` shorthand:
 
 ```bash
-# For all projects (personal skills)
 mkdir -p ~/.claude/skills
 cp -r skills/design-research ~/.claude/skills/
-
-# Or for a specific project only
-mkdir -p /path/to/your/project/.claude/skills
-cp -r skills/design-research /path/to/your/project/.claude/skills/
 ```
-
-Be aware that installed skills have their descriptions loaded into context (~2% of context window) on every session, even when you're not using them.
 
 ### What happens
 
