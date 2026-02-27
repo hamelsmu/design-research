@@ -1,8 +1,8 @@
 # design-research
 
-A prompt for [Claude Code](https://code.claude.com) that runs a comprehensive design research audit on any website using a coordinated team of browser-automation agents.
+You found a website whose design you love and want to build something that looks and feels like it. Before you start coding, you need to understand exactly how it's built — the colors, typography, spacing, components, layout patterns, responsive behavior, and all the small details that make it feel right. Manually inspecting every element in DevTools takes hours.
 
-Give it a URL and it dispatches 10 specialized agents across three parallel passes to document every aspect of the site's design: structure, layout, colors, typography, components, content templates, UX patterns, visual personality, responsive behavior, technical stack, and accessibility. The lead agent synthesizes all findings into a single structured markdown report.
+This prompt for [Claude Code](https://code.claude.com) automates that process. Give it a URL and it dispatches 10 specialized browser-automation agents to document every aspect of the site's design — exact hex colors, font stacks, component inventories, page layout measurements, content templates, UX patterns, responsive breakpoints, and more. You get back a single structured markdown reference document with all the specifics you need to faithfully recreate the design.
 
 ![Agent team running a design research audit in split-pane mode](agent-team-screenshot.jpg)
 
