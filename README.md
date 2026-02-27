@@ -1,6 +1,6 @@
 # design-research
 
-You found a website whose design you love and want to build something that looks and feels like it. Before you start coding, you need to understand exactly how it's built — the colors, typography, spacing, components, layout patterns, responsive behavior, and all the small details that make it feel right. Manually inspecting every element in DevTools takes hours.
+You found a website whose design you love and want to build something that looks and feels like it. Before you start coding, you need to understand exactly how it's built — the colors, typography, spacing, components, layout patterns, responsive behavior, and all the small details that make it feel right.
 
 This prompt for [Claude Code](https://code.claude.com) automates that process. Give it a URL and it dispatches 10 specialized browser-automation agents to document every aspect of the site's design — exact hex colors, font stacks, component inventories, page layout measurements, content templates, UX patterns, responsive breakpoints, and more. You get back a single structured markdown reference document with all the specifics you need to faithfully recreate the design.
 
